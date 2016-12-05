@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Necessary code for leaflet map.-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<!--Css for page.-->
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            transition: background-color .5s;
+            background-color: darkslategray;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            color: white;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+            transition: 0.3s
+        }
+
+        .sidenav a:hover, .offcanvas a:focus{
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            background-color: darkslategray;
+        }
+        
+        #top {
+            background-color: darkslategray;
+        }
+
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<header id="top">
+    <!--logo-->
+    <img src=logo.png height="175", width="175">
+</header>
+<body>
+    <div id="main">
+        <!--This div holds the entire leaflet map-->
+        <div class="container">
+        <!--Button for accessing project information-->
+        <button onclick="openNav(0)">Project Info</button>
+        <div id="map" style="width: 999px; height: 999px; position: relative;" class="leaflet-container leaflet-fade-anim leaflet-grab" tabindex="0">
+            <!--Leaflet formatting-->
+            <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+                <div class="leaflet-pane leaflet-overlay-pane">
+                    <!--Leaflet formattting-->
+                    <img class="leaflet-image-layer leaflet-zoom-animated" src="region1-00125-01-01-world_map.bmp" alt="" style="opacity: 0.5; transform: translate3d(0px, 0px, 0px); width: 999px; height: 999px;">
+                    <!--Leaflet Formatting-->
+                    <svg pointer-events="none" class="leaflet-zoom-animated" width="1368" height="1200" viewBox="-114 -100 1368 1200" style="transform: translate3d(-186px, -103px, 0px);">
+                            <g>
+                                <!--Each path id=""... is another clickable object on the map. Each object has an on click function that opens a side bar with the twitter feed.-->
+                                <path id="thesinfuldepths" onclick="openNav(1)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 513L400 513L400 488L376 488z"></path>
+
+                                <path id="tangleshafts" onclick="openNav(2)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M951 936L975 936L975 912L951 912z"></path>
+
+                                <path id="valestaff" onclick="openNav(3)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M557 482L582 482L582 458L557 458z"></path>
+
+                                <path id="stronggleamed" onclick="openNav(4)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 785L763 785L763 761L739 761z"></path>
+
+                                <path id="dreadfulmute" onclick="openNav(5)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 755L400 755L400 731L376 731z"></path>
+
+                                <path id="stopskin" onclick="openNav(6)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M194 694L218 694L218 670L194 670z"></path>
+                                
+                                <path id="scaldedgates" onclick="openNav(7)" class="leaflet-interactive" stroke="#ddf" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#ddf" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M648 513L672 513L672 488L648 488z"></path>
+                                
+                                <path id="skirtlathers" onclick="openNav(8)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M224 725L249 725L249 700L224 700z"></path>
+                                
+                                <path id="spreadghouls" onclick="openNav(9)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M345 725L370 725L370 700L345 700z"></path>
+                                
+                                <path id="warmcaskets" onclick="openNav(10)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 785L733 785L733 761L709 761z"></path>
+                                
+                                <path id="fleckpoison" onclick="openNav(11)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M406 755L430 755L430 731L406 731z"></path>
+                                
+                                <path id="battlefold" onclick="openNav(12)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 755L794 755L794 731L769 731z"></path>
+                                
+                                <path id="manormenace" onclick="openNav(13)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 725L400 725L400 700L376 700z"></path>
+                                
+                                <path id="thecaveofbreaking" onclick="openNav(14)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M436 725L461 725L461 700L436 700z"></path>
+                                
+                                <path id="lawdomain" onclick="openNav(15)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M618 846L642 846L642 821L618 821z"></path>
+                                
+                                <path id="dikeblaze" onclick="openNav(16)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M497 755L521 755L521 731L497 731z"></path>
+                                
+                                <path id="flutetressed" onclick="openNav(17)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M315 785L339 785L339 761L315 761z"></path>
+                                
+                                <path id="stirredhatchets" onclick="openNav(18)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M497 664L521 664L521 640L497 640z"></path>
+                                
+                                <path id="drilledboards" onclick="openNav(19)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M497 694L521 694L521 670L497 670z"></path>
+                                
+                                <path id="matchedworks" onclick="openNav(20)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 664L400 664L400 640L376 640z"></path>
+                                
+                                <path id="equalclasped" onclick="openNav(21)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M406 664L430 664L430 640L406 640z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="fatedtunnel" onclick="openNav(23)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M285 725L309 725L309 700L285 700z"></path>
+                                
+                                <path id="thecrevicesofbrass" onclick="openNav(24)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M588 725L612 725L612 700L588 700z"></path>
+                                
+                                <path id="washedmatches" onclick="openNav(25)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 846L733 846L733 821L709 821z"></path>
+                                
+                                <path id="kissedhollowtheswampofglories" onclick="openNav(26)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 694L794 694L794 670L769 670z"></path>
+                                
+                                <path id="coppercall" onclick="openNav(28)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M557 513L582 513L582 488L557 488z"></path>
+                                
+                                <path id="thefortunatehollow" onclick="openNav(29)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 846L763 846L763 821L739 821z"></path>
+                                
+                                <path id="scorchinguttered" onclick="openNav(30)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M890 634L915 634L915 609L890 609z"></path>
+                                
+                                <path id="severesuitor" onclick="openNav(31)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M890 664L915 664L915 640L890 640z"></path>
+                                
+                                <path id="taxcrack" onclick="openNav(32)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 876L733 876L733 852L709 852z"></path>
+                                
+                                <path id="fataltunnels" onclick="openNav(33)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M224 694L249 694L249 670L224 670z"></path>
+                                
+                                <path id="sharkcunning" onclick="openNav(34)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M951 694L975 694L975 670L951 670z"></path>
+                                
+                                <path id="watcheddevils" onclick="openNav(35)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M406 725L430 725L430 700L406 700z"></path>
+                                
+                                <path id="dawnsing" onclick="openNav(36)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M679 846L703 846L703 821L679 821z"></path>
+                                
+                                <path id="postruns" onclick="openNav(37)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M557 543L582 543L582 519L557 519z"></path>
+                                
+                                <path id="mergedvessel" onclick="openNav(38)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M557 573L582 573L582 549L557 549z"></path>
+                                
+                                <path id="dyesongs" onclick="openNav(39)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 876L763 876L763 852L739 852z"></path>
+                                
+                                <path id="inksculpture" onclick="openNav(40)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M406 634L430 634L430 609L406 609z"></path>
+                                
+                                <path id="distantgorge" onclick="openNav(41)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M890 785L915 785L915 761L890 761z"></path>
+                                
+                                <path id="steamseduces" onclick="openNav(42)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 725L733 725L733 700L709 700z"></path>
+                                
+                                <path id="breachedrag" onclick="openNav(43)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M588 846L612 846L612 821L588 821z"></path>
+                                
+                                <path id="blossomfasten" onclick="openNav(44)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M194 725L218 725L218 700L194 700z"></path>
+                                
+                                <path id="thetunneloffunerals" onclick="openNav(45)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M921 876L945 876L945 852L921 852z"></path>
+                                
+                                <path id="tempteddrawness" onclick="openNav(46)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M557 876L582 876L582 852L557 852z"></path>
+                                
+                                <path id="sweatcracked" onclick="openNav(47)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 846L794 846L794 821L769 821z"></path>
+                                
+                                <path id="silkentempest" onclick="openNav(48)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M679 876L703 876L703 852L679 852z"></path>
+                                
+                                <path id="waxgilds" onclick="openNav(49)" class="leaflet-interactive" stroke="#99FF00" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#99FF00" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M255 725L279 725L279 700L255 700z"></path>
+                                
+                                <path id="dungeonbaited" onclick="openNav(50)" class="leaflet-interactive" stroke="#CC0000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CC0000" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M285 634L309 634L309 609L285 609z"></path>
+                                
+                                <path id="voicebends" onclick="openNav(51)" class="leaflet-interactive" stroke="#0000CC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0000CC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M224 785L249 785L249 761L224 761z"></path>
+                                
+                                <path id="manorflashed" onclick="openNav(52)" class="leaflet-interactive" stroke="#FFCC33" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#FFCC33" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M588 634L612 634L612 609L588 609z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="wanedmatches" onclick="openNav(54)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 846L733 846L733 821L709 821z"></path>
+                                
+                                <path id="theashendust" onclick="openNav(55)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M800 513L824 513L824 488L800 488z"></path>
+                                
+                                <path id="moonstyled" onclick="openNav(57)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M830 694L854 694L854 670L830 670z"></path>
+                                
+                                <path id="moonstyled" onclick="openNav(57)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M618 815L642 815L642 791L618 791z"></path>
+                                
+                                <path id="badcyst" onclick="openNav(58)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M588 906L612 906L612 882L588 882z"></path>
+                                
+                                <path id="tearghouls" onclick="openNav(59)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M588 725L612 725L612 700L588 700z"></path>
+                                
+                                <path id="thecrevicesofbrass" onclick="openNav(24)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 846L763 846L763 821L739 821z"></path>
+                                
+                                <path id="thefortunatehollow" onclick="openNav(29)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 785L400 785L400 761L376 761z"></path>
+                                
+                                <path id="warpit" onclick="openNav(62)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M921 876L945 876L945 852L921 852z"></path>
+                                
+                                <path id="thetunneloffunerals" onclick="openNav(45)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 694L794 694L794 670L769 670z"></path>
+                                
+                                <path id="kissedhollowtheswampofglories" onclick="openNav(26)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 846L794 846L794 821L769 821z"></path>
+                                
+                                <path id="thecaveofbreaking" onclick="openNav(66)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M436 725L461 725L461 700L436 700z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="thesinfuldepths" onclick="openNav(68)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 513L400 513L400 488L376 488z"></path>
+                                
+                                <path id="thefortunatehollow" onclick="openNav(29)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 846L763 846L763 821L739 821z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="tangleshafts" onclick="openNav(2)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M951 936L975 936L975 912L951 912z"></path>
+                                
+                                <path id="thesinfuldepths" onclick="openNav(1)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 513L400 513L400 488L376 488z"></path>
+                                
+                                <path id="taxcrack" onclick="openNav(73)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 876L733 876L733 852L709 852z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="thenightofshades" onclick="openNav(75)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M618 452L642 452L642 428L618 428z"></path>
+                                
+                                <path id="bonestunnels" onclick="openNav(76)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M679 543L703 543L703 519L679 519z"></path>
+                                
+                                <path id="ghostdiestheashofmurk" onclick="openNav(77)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 361L733 361L733 337L709 337z"></path>
+                                
+                                <path id="thepitsoflearning" onclick="openNav(22)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 755L884 755L884 731L860 731z"></path>
+                                
+                                <path id="theshadowsofnight" onclick="openNav(79)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M224 664L249 664L249 640L224 640z"></path>
+                                
+                                <path id="necrobonethedeathofshade" onclick="openNav(80)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 482L794 482L794 458L769 458z"></path>
+                                
+                                <path id="fatedust" onclick="openNav(80)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M527 846L551 846L551 821L527 821z"></path>
+                                
+                                <path id="caverndied" onclick="openNav(81)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M315 422L339 422L339 398L315 398z"></path>
+                                
+                                <path id="abyssburiesthedeadash" onclick="openNav(82)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M497 725L521 725L521 700L497 700z"></path>
+                                
+                                <path id="necrogravethedustofburying" onclick="openNav(83)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M679 452L703 452L703 428L679 428z"></path>
+                                
+                                <path id="shadygraves" onclick="openNav(84)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M739 422L763 422L763 398L739 398z"></path>
+                                
+                                <path id="thedeadnight" onclick="openNav(85)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M769 301L794 301L794 276L769 276z"></path>
+                                
+                                <path id="skullburied" onclick="openNav(86)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M497 331L521 331L521 307L497 307z"></path>
+                                
+                                <path id="fataltunnels" onclick="openNav(33)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M224 694L249 694L249 670L224 670z"></path>
+                                
+                                <path id="bonesgrave" onclick="openNav(88)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 452L733 452L733 428L709 428z"></path>
+                                
+                                <path id="skullsshadows" onclick="openNav(89)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M709 422L733 422L733 398L709 398z"></path>
+                                
+                                <path id="fatedtunnel" onclick="openNav(23)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M285 725L309 725L309 700L285 700z"></path>
+                                
+                                <path id="thetunneloffunerals" onclick="openNav(45)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M921 876L945 876L945 852L921 852z"></path>
+                                
+                                <path id="ghostumbral" onclick="openNav(92)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M618 755L642 755L642 731L618 731z"></path>
+                                
+                                <path id="theashendust" onclick="openNav(55)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M800 513L824 513L824 488L800 488z"></path>
+                                
+                                <path id="thetwilightofurns" onclick="openNav(94)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M648 876L672 876L672 852L648 852z"></path>
+                                
+                                <path id="thephantomofshade" onclick="openNav(95)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M527 755L551 755L551 731L527 731z"></path>
+                                
+                                <path id="callgleamtheradiantrights" onclick="openNav(96)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M376 482L400 482L400 458L376 458z"></path>
+                                
+                                <path id="thedeadghost" onclick="openNav(97)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M830 391L854 391L854 367L830 367z"></path>
+                                
+                                <path id="thesableshade" onclick="openNav(98)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 694L884 694L884 670L860 670z"></path>
+                                
+                                <path id="thesablebone" onclick="openNav(99)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M467 482L491 482L491 458L467 458z"></path>
+                                
+                                <path id="skullcavern" onclick="openNav(100)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M921 815L945 815L945 791L921 791z"></path>
+                                
+                                <path id="tunnelfaint" onclick="openNav(101)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M830 240L854 240L854 216L830 216z"></path>
+                                
+                                <path id="tunnelurns" onclick="openNav(102)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M830 270L854 270L854 246L830 246z"></path>
+                                
+                                <path id="theoblivionoftwilight" onclick="openNav(103)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M618 422L642 422L642 398L618 398z"></path>
+                                
+                                <path id="theskullofshadow" onclick="openNav(104)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M679 331L703 331L703 307L679 307z"></path>
+                                
+                                <path id="thefateddead" onclick="openNav(105)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M830 513L854 513L854 488L830 488z"></path>
+                                
+                                <path id="umbradusts" onclick="openNav(106)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 603L884 603L884 579L860 579z"></path>
+                                
+                                <path id="skullsbones" onclick="openNav(107)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M194 785L218 785L218 761L194 761z"></path>
+                                
+                                <path id="fainturnsthefatalskull" onclick="openNav(108)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M890 452L915 452L915 428L890 428z"></path>
+                                
+                                <path id="theabyssalskulls" onclick="openNav(109)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M860 573L884 573L884 549L860 549z"></path>
+                                
+                                <path id="tunneledumbrathefatedtomb" onclick="openNav(110)" class="leaflet-interactive" stroke="#CCC" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#CCC" fill-opacity="0.7" fill-rule="evenodd" pointer-events="visiblePainted" d="M285 513L309 513L309 488L285 488z"></path>
+
+                        </g>
+                    </svg>
+                </div>
+                <!--Closing leaflet map.-->
+                <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(499.62px, -499.516px, 0px) scale(15.1369);"></div></div>
+    </div>
+    <!--All of these are special sidebar divs for the clickable events on the map. Each one corresponds to a map location and opens when the map is clicked on, revealing a Twitter stream.-->
+            <div id="Sidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <p>Welcome to The Tiblah Chronicle. The map on the right is a visual representation of my personal dwarf fortress game. Every day I will release a new year from my game's history onto twitter. Come back every day to see new details about the world of the Tiblah Chronicle.</p>
+                <p>Many tweets feature other hashtags for details such as civilizations and unresolved mysteries in the history of the world of Tiblah. It's up to you to explore this history as you will.</p>
+                <p>If you are interested in this project, you can contact me on Twitter 
+                <a href="https://twitter.com/kamehouseorbust">here</a>.</p>
+            </div>
+            <div id="mySidenav1" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thesinfuldepths%20from%3Atiblahchronicle" data-widget-id="805633843701092352">Tweets about #thesinfuldepths from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div>             
+            <div id="mySidenav2" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tangleshafts%20from%3Atiblahchronicle" data-widget-id="805650294520614913">Tweets about #tangleshafts from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div>            
+            <div id="mySidenav3" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav4" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23stronggleamed%20from%3Atiblahchronicle" data-widget-id="805650600201428992">Tweets about #stronggleamed from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+            </div> 
+            <div id="mySidenav5" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23dreadfulmute%20from%3Atiblahchronicle" data-widget-id="805650855911366660">Tweets about #dreadfulmute from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>         
+
+            </div> 
+            <div id="mySidenav6" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23stopskin%20from%3Atiblahchronicle" data-widget-id="805651033099800576">Tweets about #stopskin from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav7" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23scaldedgates%20from%3Atiblahchronicle" data-widget-id="805651178902212608">Tweets about #scaldedgates from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav8" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23skirtlathers%20from%3Atiblahchronicle" data-widget-id="805651631903739904">Tweets about #skirtlathers from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav9" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23spreadghouls%20from%3Atiblahchronicle" data-widget-id="805651776548597764">Tweets about #spreadghouls from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav10" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23warmcaskets%20from%3Atiblahchronicle" data-widget-id="805651895721279488">Tweets about #warmcaskets from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav11" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fleckpoison%20from%3Atiblahchronicle" data-widget-id="805652258956472320">Tweets about #fleckpoison from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav12" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23battlefold%20from%3Atiblahchronicle" data-widget-id="805652413772394496">Tweets about #battlefold from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav13" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                                <a class="twitter-timeline"  href="https://twitter.com/search?q=%23manormenace%20from%3Atiblahchronicle" data-widget-id="805652568856784896">Tweets about #manormenace from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+            </div> 
+            <div id="mySidenav14" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thecaveofbreaking%20from%3Atiblahchronicle" data-widget-id="805652685370302464">Tweets about #thecaveofbreaking from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav15" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23lawdomain%20from%3Atiblahchronicle" data-widget-id="805652798276767744">Tweets about #lawdomain from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav16" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23dikeblaze%20from%3Atiblahchronicle" data-widget-id="805653106033881088">Tweets about #dikeblaze from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav17" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23flutetressed%20from%3Atiblahchronicle" data-widget-id="805653215274475520">Tweets about #flutetressed from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav18" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23stirredhatchets%20from%3Atiblahchronicle" data-widget-id="805653352050782208">Tweets about #stirredhatchets from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav19" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23drilledboards%20from%3Atiblahchronicle" data-widget-id="805653533949313024">Tweets about #drilledboards from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav20" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23matchedworks%20from%3Atiblahchronicle" data-widget-id="805653670541070336">Tweets about #matchedworks from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav21" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23equalclasped%20from%3Atiblahchronicle" data-widget-id="805654289272176640">Tweets about #equalclasped from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav22" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thepitsoflearning%20from%3Atiblahchronicle" data-widget-id="805660031236587520">Tweets about #thepitsoflearning from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav23" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fatedtunnel%20from%3Atiblahchronicle" data-widget-id="805654478368153601">Tweets about #fatedtunnel from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav24" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thecrevicesofbrass%20from%3Atiblahchronicle" data-widget-id="805654643237851136">Tweets about #thecrevicesofbrass from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav25" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23washedmatches%20from%3Atiblahchronicle" data-widget-id="805654809042882560">Tweets about #washedmatches from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav26" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23kissedhollowtheswampofglories%20from%3Atiblahchronicle" data-widget-id="805654959748448256">Tweets about #kissedhollowtheswampofglories from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav27" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23coppercall%20from%3Atiblahchronicle" data-widget-id="805655331619696641">Tweets about #coppercall from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div>
+            <div id="mySidenav28" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23coppercall%20from%3Atiblahchronicle" data-widget-id="805655331619696641">Tweets about #coppercall from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav29" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thefortunatehollow%20from%3Atiblahchronicle" data-widget-id="805655498309636096">Tweets about #thefortunatehollow from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav30" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23scorchinguttered%20from%3Atiblahchronicle" data-widget-id="805655651691233280">Tweets about #scorchinguttered from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav31" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23severesuitor%20from%3Atiblahchronicle" data-widget-id="805655793517346816">Tweets about #severesuitor from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav32" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23taxcrack%20from%3Atiblahchronicle" data-widget-id="805655999654858752">Tweets about #taxcrack from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav33" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fataltunnels%20from%3Atiblahchronicle" data-widget-id="805656199249166337">Tweets about #fataltunnels from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav34" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23sharkcunning%20from%3Atiblahchronicle" data-widget-id="805656287145054208">Tweets about #sharkcunning from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav35" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23watcheddevils%20from%3Atiblahchronicle" data-widget-id="805656486445744129">Tweets about #watcheddevils from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav36" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23dawnsing%20from%3Atiblahchronicle" data-widget-id="805656626078384128">Tweets about #dawnsing from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav37" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23postruns%20from%3Atiblahchronicle" data-widget-id="805656761864691712">Tweets about #postruns from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav38" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23mergedvessel%20from%3Atiblahchronicle" data-widget-id="805656975719665664">Tweets about #mergedvessel from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav39" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23dyesongs%20from%3Atiblahchronicle" data-widget-id="805657789863522304">Tweets about #dyesongs from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav40" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23inksculpture%20from%3Atiblahchronicle" data-widget-id="805657901851353088">Tweets about #inksculpture from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav41" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23distantgorge%20from%3Atiblahchronicle" data-widget-id="805658004829904896">Tweets about #distantgorge from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav42" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23steamseduces%20from%3Atiblahchronicle" data-widget-id="805658101546385408">Tweets about #steamseduces from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav43" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23breachedrag%20from%3Atiblahchronicle" data-widget-id="805658315745329152">Tweets about #breachedrag from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav44" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23blossomfasten%20from%3Atiblahchronicle" data-widget-id="805658432267284480">Tweets about #blossomfasten from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav45" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thetunneloffunerals%20from%3Atiblahchronicle" data-widget-id="805658689810087936">Tweets about #thetunneloffunerals from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav46" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tempteddrawness%20from%3Atiblahchronicle" data-widget-id="805658955712262144">Tweets about #tempteddrawness from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav47" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23sweatcracked%20from%3Atiblahchronicle" data-widget-id="805659071034650624">Tweets about #sweatcracked from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav48" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23silkentempest%20from%3Atiblahchronicle" data-widget-id="805659379945111552">Tweets about #silkentempest from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav49" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23waxgilds%20from%3Atiblahchronicle" data-widget-id="805659464225423360">Tweets about #waxgilds from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav50" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23dungeonbaited%20from%3Atiblahchronicle" data-widget-id="805659575827496960">Tweets about #dungeonbaited from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav51" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23voicedbends%20from%3Atiblahchronicle" data-widget-id="805659683738583040">Tweets about #voicedbends from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav52" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23manorflashed%20from%3Atiblahchronicle" data-widget-id="805659818799271936">Tweets about #manorflashed from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav53" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav54" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23wanedmatches%20from%3Atiblahchronicle" data-widget-id="805660207355404288">Tweets about #wanedmatches from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav55" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theashendust%20from%3Atiblahchronicle" data-widget-id="805660352063143936">Tweets about #theashendust from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav56" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav57" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23moonstyled%20from%3Atiblahchronicle" data-widget-id="805660595739566080">Tweets about #moonstyled from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav58" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23badcyst%20from%3Atiblahchronicle" data-widget-id="805660690660950019">Tweets about #badcyst from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav59" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tearghouls%20from%3Atiblahchronicle" data-widget-id="805660820042551296">Tweets about #tearghouls from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav60" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav61" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav62" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23warpit%20from%3Atiblahchronicle" data-widget-id="805661348587864065">Tweets about #warpit from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav63" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav64" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav65" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav66" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thecaveofbreaking%20from%3Atiblahchronicle" data-widget-id="805652685370302464">Tweets about #thecaveofbreaking from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav67" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav68" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thesinfuldepths%20from%3Atiblahchronicle" data-widget-id="805633843701092352">Tweets about #thesinfuldepths from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav69" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav70" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav71" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav72" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav73" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23taxcrack%20from%3Atiblahchronicle" data-widget-id="805655999654858752">Tweets about #taxcrack from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav74" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav75" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thenightofshades%20from%3Atiblahchronicle" data-widget-id="805662284257382400">Tweets about #thenightofshades from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav76" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23bonestunnels%20from%3Atiblahchronicle" data-widget-id="805662461336682496">Tweets about #bonestunnels from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav77" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23ghostdiestheashofmurk%20from%3Atiblahchronicle" data-widget-id="805662628525772800">Tweets about #ghostdiestheashofmurk from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav78" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thepitsoflearning%20from%3Atiblahchronicle" data-widget-id="805660031236587520">Tweets about #thepitsoflearning from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav79" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theshadowsofnight%20from%3Atiblahchronicle" data-widget-id="805662813775679488">Tweets about #theshadowsofnight from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav80" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fateddust%20from%3Atiblahchronicle" data-widget-id="805663136867086336">Tweets about #fateddust from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav81" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23caverndied%20from%3Atiblahchronicle" data-widget-id="805663272779268096">Tweets about #caverndied from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav82" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theabyssalskulls%20from%3Atiblahchronicle" data-widget-id="805667360803880960">Tweets about #theabyssalskulls from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav83" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/hashtag/necrogravethedustofburying" data-widget-id="805663617307856896">#necrogravethedustofburying Tweets</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav84" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23shadygraves%20from%3Atiblahchronicle" data-widget-id="805663734932901888">Tweets about #shadygraves from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav85" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thedeadnight%20from%3Atiblahchronicle" data-widget-id="805663866113892352">Tweets about #thedeadnight from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav86" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23skullburied%20from%3Atiblahchronicle" data-widget-id="805664046427111425">Tweets about #skullburied from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav87" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fataltunnels%20from%3Atiblahchronicle" data-widget-id="805656199249166337">Tweets about #fataltunnels from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div>
+            <div id="mySidenav88" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23bonesgrave%20from%3Atiblahchronicle" data-widget-id="805664308285886464">Tweets about #bonesgrave from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav89" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23skullsshadows%20from%3Atiblahchronicle" data-widget-id="805664422798692352">Tweets about #skullsshadows from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav90" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div>
+            <div id="mySidenav91" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav92" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23ghostumbral%20from%3Atiblahchronicle" data-widget-id="805664751263031296">Tweets about #ghostumbral from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav93" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%23valestaff%20from%3Atiblahchronicle" data-widget-id="805543531444051970">Tweets about #valestaff from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>          
+
+            </div> 
+            <div id="mySidenav94" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thetwilightofurns%20from%3Atiblahchronicle" data-widget-id="805665001956638720">Tweets about #thetwilightofurns from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav95" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thephantomofshade%20from%3Atiblahchronicle" data-widget-id="805665121292918784">Tweets about #thephantomofshade from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav96" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23callgleamtheradiantrights%20from%3Atiblahchronicle" data-widget-id="805665366236073985">Tweets about #callgleamtheradiantrights from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav97" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thedeadghost%20from%3Atiblahchronicle" data-widget-id="805665501850587140">Tweets about #thedeadghost from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav98" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thesableshade%20from%3Atiblahchronicle" data-widget-id="805665607626723328">Tweets about #thesableshade from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                      >          
+
+            </div> 
+            <div id="mySidenav99" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thesablebone%20from%3Atiblahchronicle" data-widget-id="805665712371073024">Tweets about #thesablebone from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav100" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23skullcavern%20from%3Atiblahchronicle" data-widget-id="805665850871136256">Tweets about #skullcavern from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav101" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tunnelfaint%20from%3Atiblahchronicle" data-widget-id="805666003053068288">Tweets about #tunnelfaint from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav102" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tunnelurns%20from%3Atiblahchronicle" data-widget-id="805666116613898240">Tweets about #tunnelurns from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav103" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theoblivionoftwilight%20from%3Atiblahchronicle" data-widget-id="805666313154727936">Tweets about #theoblivionoftwilight from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav104" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theskullofshadow%20from%3Atiblahchronicle" data-widget-id="805666460878196736">Tweets about #theskullofshadow from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav105" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23thefateddead%20from%3Atiblahchronicle" data-widget-id="805666633847107584">Tweets about #thefateddead from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav106" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23umbradusts%20from%3Atiblahchronicle" data-widget-id="805666804882350081">Tweets about #umbradusts from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav107" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23skullsbones%20from%3Atiblahchronicle" data-widget-id="805666952987426816">Tweets about #skullsbones from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav108" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23fainturnsthefatalskull%20from%3Atiblahchronicle" data-widget-id="805667207137128448">Tweets about #fainturnsthefatalskull from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav109" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23theabyssalskulls%20from%3Atiblahchronicle" data-widget-id="805667360803880960">Tweets about #theabyssalskulls from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+            </div> 
+            <div id="mySidenav110" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                                    <a class="twitter-timeline"  href="https://twitter.com/search?q=%23tunneledumbrathefatedtomb%20from%3Atiblahchronicle" data-widget-id="805667556094857216">Tweets about #tunneledumbrathefatedtomb from:tiblahchronicle</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+            </div>
+    <!--JS functions for opening and closing the sidebars-->
+    <!--openNav() receives the number corresponding to the approrpriate sidebar and gives it a width of 250px. It also diminshes the header and the body by 250px by increasing its left margin and ensures the background remains the right color.-->
+    <!--closeNav decreases the left margin for the header and main body by 250px, ensures the background is the appropriate color, and closes every single div (this gets rid of the need to send it a parameter).-->
+        <script>
+            function openNav(num) {
+                    console.log(num);
+                    if(num===0){
+                    document.getElementById("Sidenav").style.width = "250px";
+                    }
+                    if(num===1){
+                    document.getElementById("mySidenav1").style.width = "250px";
+                    }
+                    if(num===2){
+                    document.getElementById("mySidenav2").style.width = "250px";
+                    }
+                    if(num===3){
+                    document.getElementById("mySidenav3").style.width = "250px";
+                    }
+                    if(num===4){
+                    document.getElementById("mySidenav4").style.width = "250px";
+                    }
+                    if(num===5){
+                    document.getElementById("mySidenav5").style.width = "250px";
+                    }
+                    if(num===6){
+                    document.getElementById("mySidenav6").style.width = "250px";
+                    }
+                    if(num===7){
+                    document.getElementById("mySidenav7").style.width = "250px";
+                    }
+                    if(num===8){
+                    document.getElementById("mySidenav8").style.width = "250px";
+                    }
+                    if(num===9){
+                    document.getElementById("mySidenav9").style.width = "250px";
+                    }
+                    if(num==10){
+                    document.getElementById("mySidenav10").style.width = "250px";
+                    }
+                    if(num===11){
+                    document.getElementById("mySidenav11").style.width = "250px";
+                    }
+                    if(num===12){
+                    document.getElementById("mySidenav12").style.width = "250px";
+                    }
+                    if(num===13){
+                    document.getElementById("mySidenav13").style.width = "250px";
+                    }
+                    if(num===14){
+                    document.getElementById("mySidenav14").style.width = "250px";
+                    }
+                    if(num===15){
+                    document.getElementById("mySidenav15").style.width = "250px";
+                    }
+                    if(num===16){
+                    document.getElementById("mySidenav16").style.width = "250px";
+                    }
+                    if(num===17){
+                    document.getElementById("mySidenav17").style.width = "250px";
+                    }
+                    if(num===18){
+                    document.getElementById("mySidenav18").style.width = "250px";
+                    }
+                    if(num===19){
+                    document.getElementById("mySidenav19").style.width = "250px";
+                    }
+                    if(num===20){
+                    document.getElementById("mySidenav20").style.width = "250px";
+                    }
+                    if(num===21){
+                    document.getElementById("mySidenav21").style.width = "250px";
+                    }
+                    if(num===22){
+                    document.getElementById("mySidenav22").style.width = "250px";
+                    }
+                    if(num===23){
+                    document.getElementById("mySidenav23").style.width = "250px";
+                    }
+                    if(num===24){
+                    document.getElementById("mySidenav24").style.width = "250px";
+                    }
+                    if(num===25){
+                    document.getElementById("mySidenav25").style.width = "250px";
+                    }
+                    if(num===26){
+                    document.getElementById("mySidenav26").style.width = "250px";
+                    }
+                    if(num===27){
+                    document.getElementById("mySidenav27").style.width = "250px";
+                    }
+                    if(num===28){
+                    document.getElementById("mySidenav28").style.width = "250px";
+                    }
+                    if(num===29){
+                    document.getElementById("mySidenav29").style.width = "250px";
+                    }
+                    if(num===30){
+                    document.getElementById("mySidenav30").style.width = "250px";
+                    }
+                    if(num===31){
+                    document.getElementById("mySidenav31").style.width = "250px";
+                    }
+                    if(num===32){
+                    document.getElementById("mySidenav32").style.width = "250px";
+                    }
+                    if(num===33){
+                    document.getElementById("mySidenav33").style.width = "250px";
+                    }
+                    if(num===34){
+                    document.getElementById("mySidenav34").style.width = "250px";
+                    }
+                    if(num===35){
+                    document.getElementById("mySidenav35").style.width = "250px";
+                    }
+                    if(num===36){
+                    document.getElementById("mySidenav36").style.width = "250px";
+                    }
+                    if(num===37){
+                    document.getElementById("mySidenav37").style.width = "250px";
+                    }
+                    if(num===38){
+                    document.getElementById("mySidenav38").style.width = "250px";
+                    }
+                    if(num===39){
+                    document.getElementById("mySidenav39").style.width = "250px";
+                    }
+                    if(num===40){
+                    document.getElementById("mySidenav40").style.width = "250px";
+                    }
+                    if(num===41){
+                    document.getElementById("mySidenav41").style.width = "250px";
+                    }
+                    if(num===42){
+                    document.getElementById("mySidenav42").style.width = "250px";
+                    }
+                    if(num===43){
+                    document.getElementById("mySidenav43").style.width = "250px";
+                    }
+                    if(num===44){
+                    document.getElementById("mySidenav44").style.width = "250px";
+                    }
+                    if(num===45){
+                    document.getElementById("mySidenav45").style.width = "250px";
+                    }
+                    if(num===46){
+                    document.getElementById("mySidenav46").style.width = "250px";
+                    }
+                    if(num===47){
+                    document.getElementById("mySidenav47").style.width = "250px";
+                    }
+                    if(num===48){
+                    document.getElementById("mySidenav48").style.width = "250px";
+                    }
+                    if(num===49){
+                    document.getElementById("mySidenav49").style.width = "250px";
+                    }
+                    if(num===50){
+                    document.getElementById("mySidenav50").style.width = "250px";
+                    }
+                    if(num===51){
+                    document.getElementById("mySidenav51").style.width = "250px";
+                    }
+                    if(num===52){
+                    document.getElementById("mySidenav52").style.width = "250px";
+                    }
+                    if(num===53){
+                    document.getElementById("mySidenav53").style.width = "250px";
+                    }
+                    if(num===54){
+                    document.getElementById("mySidenav54").style.width = "250px";
+                    }
+                    if(num===55){
+                    document.getElementById("mySidenav55").style.width = "250px";
+                    }
+                    if(num===56){
+                    document.getElementById("mySidenav56").style.width = "250px";
+                    }
+                    if(num===57){
+                    document.getElementById("mySidenav57").style.width = "250px";
+                    }
+                    if(num===58){
+                    document.getElementById("mySidenav58").style.width = "250px";
+                    }
+                    if(num===59){
+                    document.getElementById("mySidenav59").style.width = "250px";
+                    }
+                    if(num===60){
+                    document.getElementById("mySidenav60").style.width = "250px";
+                    }
+                    if(num===61){
+                    document.getElementById("mySidenav61").style.width = "250px";
+                    }
+                    if(num===62){
+                    document.getElementById("mySidenav62").style.width = "250px";
+                    }
+                    if(num===63){
+                    document.getElementById("mySidenav63").style.width = "250px";
+                    }
+                    if(num===64){
+                    document.getElementById("mySidenav64").style.width = "250px";
+                    }
+                    if(num===65){
+                    document.getElementById("mySidenav65").style.width = "250px";
+                    }
+                    if(num===66){
+                    document.getElementById("mySidenav66").style.width = "250px";
+                    }
+                    if(num===67){
+                    document.getElementById("mySidenav67").style.width = "250px";
+                    }
+                    if(num===68){
+                    document.getElementById("mySidenav68").style.width = "250px";
+                    }
+                    if(num===69){
+                    document.getElementById("mySidenav69").style.width = "250px";
+                    }
+                    if(num===70){
+                    document.getElementById("mySidenav70").style.width = "250px";
+                    }
+                    if(num===71){
+                    document.getElementById("mySidenav71").style.width = "250px";
+                    }
+                    if(num===72){
+                    document.getElementById("mySidenav72").style.width = "250px";
+                    }
+                    if(num===73){
+                    document.getElementById("mySidenav73").style.width = "250px";
+                    }
+                    if(num===74){
+                    document.getElementById("mySidenav74").style.width = "250px";
+                    }
+                    if(num===75){
+                    document.getElementById("mySidenav75").style.width = "250px";
+                    }
+                    if(num===76){
+                    document.getElementById("mySidenav76").style.width = "250px";
+                    }
+                    if(num===77){
+                    document.getElementById("mySidenav77").style.width = "250px";
+                    }
+                    if(num===78){
+                    document.getElementById("mySidenav78").style.width = "250px";
+                    }
+                    if(num===79){
+                    document.getElementById("mySidenav79").style.width = "250px";
+                    }
+                    if(num===80){
+                    document.getElementById("mySidenav80").style.width = "250px";
+                    }
+                    if(num===81){
+                    document.getElementById("mySidenav81").style.width = "250px";
+                    }
+                    if(num===82){
+                    document.getElementById("mySidenav82").style.width = "250px";
+                    }
+                    if(num===83){
+                    document.getElementById("mySidenav83").style.width = "250px";
+                    }
+                    if(num===84){
+                    document.getElementById("mySidenav84").style.width = "250px";
+                    }
+                    if(num===85){
+                    document.getElementById("mySidenav85").style.width = "250px";
+                    }
+                    if(num===86){
+                    document.getElementById("mySidenav86").style.width = "250px";
+                    }
+                    if(num===87){
+                    document.getElementById("mySidenav87").style.width = "250px";
+                    }
+                    if(num===88){
+                    document.getElementById("mySidenav88").style.width = "250px";
+                    }
+                    if(num===89){
+                    document.getElementById("mySidenav89").style.width = "250px";
+                    }
+                    if(num===90){
+                    document.getElementById("mySidenav90").style.width = "250px";
+                    }
+                    if(num===91){
+                    document.getElementById("mySidenav91").style.width = "250px";
+                    }
+                    if(num===92){
+                    document.getElementById("mySidenav92").style.width = "250px";
+                    }
+                    if(num===93){
+                    document.getElementById("mySidenav93").style.width = "250px";
+                    }
+                    if(num===94){
+                    document.getElementById("mySidenav94").style.width = "250px";
+                    }
+                    if(num===95){
+                    document.getElementById("mySidenav95").style.width = "250px";
+                    }
+                    if(num===96){
+                    document.getElementById("mySidenav96").style.width = "250px";
+                    }
+                    if(num===97){
+                    document.getElementById("mySidenav97").style.width = "250px";
+                    }
+                    if(num===98){
+                    document.getElementById("mySidenav98").style.width = "250px";
+                    }
+                    if(num===99){
+                    document.getElementById("mySidenav99").style.width = "250px";
+                    }
+                    if(num===100){
+                    document.getElementById("mySidenav100").style.width = "250px";
+                    }
+                    if(num===101){
+                    document.getElementById("mySidenav101").style.width = "250px";
+                    }
+                    if(num===102){
+                    document.getElementById("mySidenav102").style.width = "250px";
+                    }
+                    if(num===103){
+                    document.getElementById("mySidenav103").style.width = "250px";
+                    }
+                    if(num===104){
+                    document.getElementById("mySidenav104").style.width = "250px";
+                    }
+                    if(num===105){
+                    document.getElementById("mySidenav105").style.width = "250px";
+                    }
+                    if(num===106){
+                    document.getElementById("mySidenav106").style.width = "250px";
+                    }
+                    if(num===107){
+                    document.getElementById("mySidenav107").style.width = "250px";
+                    }
+                    if(num===108){
+                    document.getElementById("mySidenav108").style.width = "250px";
+                    }
+                    if(num===109){
+                    document.getElementById("mySidenav109").style.width = "250px";
+                    }
+                    if(num===110){
+                    document.getElementById("mySidenav110").style.width = "250px";
+                    }
+                    document.getElementById("main").style.marginLeft = "250px";
+                    document.getElementById("top").style.marginLeft = "250px";
+                    document.body.style.backgroundColor = "darkslategray";
+                }
+            function closeNav() {
+                    document.getElementById("main").style.marginLeft = "0";
+                    document.getElementById("top").style.marginLeft = "0";
+                    document.body.style.backgroundColor = "darkslategray";
+                    document.getElementById("Sidenav").style.width = "0";
+                    document.getElementById("mySidenav1").style.width = "0";
+                    document.getElementById("mySidenav2").style.width = "0";
+                    document.getElementById("mySidenav3").style.width = "0";
+                    document.getElementById("mySidenav4").style.width = "0";
+                    document.getElementById("mySidenav5").style.width = "0";
+                    document.getElementById("mySidenav6").style.width = "0";
+                    document.getElementById("mySidenav7").style.width = "0";
+                    document.getElementById("mySidenav8").style.width = "0";
+                    document.getElementById("mySidenav9").style.width = "0";
+                    document.getElementById("mySidenav10").style.width = "0";
+                    document.getElementById("mySidenav11").style.width = "0";
+                    document.getElementById("mySidenav12").style.width = "0";
+                    document.getElementById("mySidenav13").style.width = "0";
+                    document.getElementById("mySidenav14").style.width = "0";
+                    document.getElementById("mySidenav15").style.width = "0";
+                    document.getElementById("mySidenav16").style.width = "0";
+                    document.getElementById("mySidenav17").style.width = "0";
+                    document.getElementById("mySidenav18").style.width = "0";
+                    document.getElementById("mySidenav19").style.width = "0";
+                    document.getElementById("mySidenav20").style.width = "0";
+                    document.getElementById("mySidenav21").style.width = "0";
+                    document.getElementById("mySidenav22").style.width = "0";
+                    document.getElementById("mySidenav23").style.width = "0";
+                    document.getElementById("mySidenav24").style.width = "0";
+                    document.getElementById("mySidenav25").style.width = "0";
+                    document.getElementById("mySidenav26").style.width = "0";
+                    document.getElementById("mySidenav27").style.width = "0";
+                    document.getElementById("mySidenav28").style.width = "0";
+                    document.getElementById("mySidenav29").style.width = "0";
+                    document.getElementById("mySidenav30").style.width = "0";
+                    document.getElementById("mySidenav31").style.width = "0";
+                    document.getElementById("mySidenav32").style.width = "0";
+                    document.getElementById("mySidenav33").style.width = "0";
+                    document.getElementById("mySidenav34").style.width = "0";
+                    document.getElementById("mySidenav35").style.width = "0";
+                    document.getElementById("mySidenav36").style.width = "0";
+                    document.getElementById("mySidenav37").style.width = "0";
+                    document.getElementById("mySidenav38").style.width = "0";
+                    document.getElementById("mySidenav39").style.width = "0";
+                    document.getElementById("mySidenav40").style.width = "0";
+                    document.getElementById("mySidenav41").style.width = "0";
+                    document.getElementById("mySidenav42").style.width = "0";
+                    document.getElementById("mySidenav43").style.width = "0";
+                    document.getElementById("mySidenav44").style.width = "0";
+                    document.getElementById("mySidenav45").style.width = "0";
+                    document.getElementById("mySidenav46").style.width = "0";
+                    document.getElementById("mySidenav47").style.width = "0";
+                    document.getElementById("mySidenav48").style.width = "0";
+                    document.getElementById("mySidenav49").style.width = "0";
+                    document.getElementById("mySidenav50").style.width = "0";
+                    document.getElementById("mySidenav51").style.width = "0";
+                    document.getElementById("mySidenav52").style.width = "0";
+                    document.getElementById("mySidenav53").style.width = "0";
+                    document.getElementById("mySidenav54").style.width = "0";
+                    document.getElementById("mySidenav55").style.width = "0";
+                    document.getElementById("mySidenav56").style.width = "0";
+                    document.getElementById("mySidenav57").style.width = "0";
+                    document.getElementById("mySidenav58").style.width = "0";
+                    document.getElementById("mySidenav59").style.width = "0";
+                    document.getElementById("mySidenav60").style.width = "0";
+                    document.getElementById("mySidenav61").style.width = "0";
+                    document.getElementById("mySidenav62").style.width = "0";
+                    document.getElementById("mySidenav63").style.width = "0";
+                    document.getElementById("mySidenav64").style.width = "0";
+                    document.getElementById("mySidenav65").style.width = "0";
+                    document.getElementById("mySidenav66").style.width = "0";
+                    document.getElementById("mySidenav67").style.width = "0";
+                    document.getElementById("mySidenav68").style.width = "0";
+                    document.getElementById("mySidenav69").style.width = "0";
+                    document.getElementById("mySidenav70").style.width = "0";
+                    document.getElementById("mySidenav71").style.width = "0";
+                    document.getElementById("mySidenav72").style.width = "0";
+                    document.getElementById("mySidenav73").style.width = "0";
+                    document.getElementById("mySidenav74").style.width = "0";
+                    document.getElementById("mySidenav75").style.width = "0";
+                    document.getElementById("mySidenav76").style.width = "0";
+                    document.getElementById("mySidenav77").style.width = "0";
+                    document.getElementById("mySidenav78").style.width = "0";
+                    document.getElementById("mySidenav79").style.width = "0";
+                    document.getElementById("mySidenav80").style.width = "0";
+                    document.getElementById("mySidenav81").style.width = "0";
+                    document.getElementById("mySidenav82").style.width = "0";
+                    document.getElementById("mySidenav83").style.width = "0";
+                    document.getElementById("mySidenav84").style.width = "0";
+                    document.getElementById("mySidenav85").style.width = "0";
+                    document.getElementById("mySidenav86").style.width = "0";
+                    document.getElementById("mySidenav87").style.width = "0";
+                    document.getElementById("mySidenav88").style.width = "0";
+                    document.getElementById("mySidenav89").style.width = "0";
+                    document.getElementById("mySidenav90").style.width = "0";
+                    document.getElementById("mySidenav91").style.width = "0";
+                    document.getElementById("mySidenav92").style.width = "0";
+                    document.getElementById("mySidenav93").style.width = "0";
+                    document.getElementById("mySidenav94").style.width = "0";
+                    document.getElementById("mySidenav95").style.width = "0";
+                    document.getElementById("mySidenav96").style.width = "0";
+                    document.getElementById("mySidenav97").style.width = "0";
+                    document.getElementById("mySidenav98").style.width = "0";
+                    document.getElementById("mySidenav99").style.width = "0";
+                    document.getElementById("mySidenav100").style.width = "0";
+                    document.getElementById("mySidenav101").style.width = "0";
+                    document.getElementById("mySidenav102").style.width = "0";
+                    document.getElementById("mySidenav103").style.width = "0";
+                    document.getElementById("mySidenav104").style.width = "0";
+                    document.getElementById("mySidenav105").style.width = "0";
+                    document.getElementById("mySidenav106").style.width = "0";
+                    document.getElementById("mySidenav107").style.width = "0";
+                    document.getElementById("mySidenav108").style.width = "0";
+                    document.getElementById("mySidenav109").style.width = "0";
+                    document.getElementById("mySidenav110").style.width = "0";
+                }
+        </script>
+        </div>
+    </div>
+</body>
+</html>
+
+
